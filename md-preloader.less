@@ -1,0 +1,73 @@
+/**
+ *
+ *
+ *
+ *
+ */
+.md-preloader {
+
+  // overall speed for all partitions to meet
+  @speed: 7000ms;
+
+  @color: #448AFF;
+  @size: 100px;
+  @stroke-linecap: square;
+
+  // this is an attempt to match where the official
+  // loader's partitions meet
+  @rotation-offset: 30deg;
+
+  // the minimum size that the arc catches up to
+  @squished-width: 8;
+
+  // circumference of the original svg cricle
+  // where 75px is the size and 8px is the stroke
+  @circumference: 2 * pi() * (75px - 8px) / 2;
+
+  // fraction of the circumference that the arc grows to
+  @arc-length: 0.7;
+
+  // number of points where the arc meets
+  @partitions: 5;
+
+  transform: rotate(@rotation-offset);
+  animation: outer-rotate @speed linear infinite;
+
+  @keyframes outer-rotate{
+    100% {
+      transform: rotate(360deg + @rotation-offset);
+    }
+  }
+
+  svg {
+    width: @size;
+    height: @size;
+    transform: rotate(-(360deg * (1 - @arc-length)) - @squished-width * 2);
+    animation: inner-rotate (@speed / @partitions) linear infinite;
+
+    @keyframes inner-rotate{
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    circle{
+      fill: none;
+      stroke-linecap: @stroke-linecap;
+      stroke: @color;
+      stroke-dasharray: @squished-width @circumference;
+      stroke-dashoffset: 0;
+      animation: revolve (@speed / @partitions) cubic-bezier(.4,.0,.23,1) infinite;
+
+      @keyframes revolve{
+        50% {
+          stroke-dasharray: (@arc-length  * @circumference + @squished-width) @circumference;
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: (-@arc-length * @circumference) + @squished-width;
+        }
+      }
+    }
+  }
+}
