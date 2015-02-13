@@ -1,26 +1,30 @@
 /**
+ * Google Material Design Preloader
  *
+ * CSS animated SVG implementation of the Google Material Design preloader
  *
- *
- *
+ * License: MIT
+ * Author: Rudi Theunissen (rudolf.theunissen@gmail.com)
+ * Version: 1.0.1
  */
 .md-preloader {
 
-  // overall speed for all partitions to meet
+  // overall time taken for all the partitions to meet once
   @speed: 6600ms;
 
+  // A200 in the Material Design color palette
   @color: #448AFF;
-  @size: 100px;
+
+  // could be 'round', but the official one is square
   @stroke-linecap: square;
 
-  // this is an attempt to match where the official
-  // loader's partitions meet
+  // this is an attempt to match where the official preloader's partitions meet
   @rotation-offset: 30deg;
 
-  // the minimum size that the arc catches up to
+  // the minimum distance that the arc catches up to the front
   @squished-width: 8;
 
-  // circumference of the original svg cricle
+  // circumference of the original svg cricle (in the markup)
   // where 75px is the size and 8px is the stroke
   @circumference: 2 * pi() * (75px - 8px) / 2;
 
@@ -40,8 +44,6 @@
   }
 
   svg {
-    width: @size;
-    height: @size;
     transform: rotate(-(360deg * (1 - @arc-length)) - @squished-width * 2);
     animation: inner-rotate (@speed / @partitions) linear infinite;
 
@@ -51,7 +53,7 @@
       }
     }
 
-    circle{
+    circle {
       fill: none;
       stroke-linecap: @stroke-linecap;
       stroke: @color;
@@ -59,13 +61,13 @@
       stroke-dashoffset: 0;
       animation: revolve (@speed / @partitions) cubic-bezier(.4,.0,.23,1) infinite;
 
-      @keyframes revolve{
+      @keyframes revolve {
         50% {
-          stroke-dasharray: (@arc-length  * @circumference + @squished-width) @circumference;
+          stroke-dasharray: (@arc-length * @circumference + @squished-width) @circumference;
           stroke-dashoffset: 0;
         }
         100% {
-          stroke-dashoffset: (-@arc-length * @circumference) + @squished-width;
+          stroke-dashoffset: @squished-width - (@arc-length * @circumference);
         }
       }
     }
