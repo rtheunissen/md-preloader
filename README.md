@@ -7,6 +7,12 @@ bower install material-design-preloader
 
 [Codepen](http://codepen.io/rudi_theunissen/pen/xbYZjB)
 
-![Demo](http://i.imgur.com/XTXx2G4.gif)
+![Demo1](http://i.imgur.com/VDdIDOR.gif)
+![Demo2](http://i.imgur.com/LDuHZef.gif)
+![Demo3](http://i.imgur.com/HC3a6u3.gif)
+
+http://i.imgur.com/DSHznsG.gif
+http://i.imgur.com/QL4ub85.gif
+http://i.imgur.com/cxsT7rS.gif
 
 
