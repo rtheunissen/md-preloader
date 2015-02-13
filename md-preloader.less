@@ -5,14 +5,14 @@
  *
  * License: MIT
  * Author: Rudi Theunissen (rudolf.theunissen@gmail.com)
- * Version: 1.0.1
+ * Version: 1.0.5
  */
 .md-preloader {
 
   // overall time taken for all the partitions to meet once
   @speed: 6600ms;
 
-  // A200 in the Material Design color palette
+  // Blue A200 in the Material Design color palette
   @color: #448AFF;
 
   // could be 'round', but the official one is square
@@ -24,52 +24,52 @@
   // the minimum distance that the arc catches up to the front
   @squished-width: 8;
 
-  // circumference of the original svg cricle (in the markup)
-  // where 75px is the size and 8px is the stroke
-  @circumference: 2 * pi() * (75px - 8px) / 2;
-
   // fraction of the circumference that the arc grows to
   @arc-length: 0.7;
 
   // number of points where the arc meets
   @partitions: 5;
 
+  // circumference of the original svg cricle (in the markup)
+  @circumference: 2 * pi() * (75px - 8px) / 2;
+
+  display: inline-block;
   transform: rotate(@rotation-offset);
   animation: outer-rotate @speed linear infinite;
-
-  @keyframes outer-rotate{
-    100% {
-      transform: rotate(360deg + @rotation-offset);
-    }
-  }
 
   svg {
     transform: rotate(-(360deg * (1 - @arc-length)) - @squished-width * 2);
     animation: inner-rotate (@speed / @partitions) linear infinite;
 
-    @keyframes inner-rotate{
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-
     circle {
       fill: none;
-      stroke-linecap: @stroke-linecap;
       stroke: @color;
+      stroke-linecap: @stroke-linecap;
       stroke-dasharray: @squished-width @circumference;
       stroke-dashoffset: 0;
-      animation: revolve (@speed / @partitions) cubic-bezier(.4,.0,.23,1) infinite;
+      animation: revolve (@speed / @partitions) cubic-bezier(.8,.0,.4,.8) infinite;
+    }
+  }
 
-      @keyframes revolve {
-        50% {
-          stroke-dasharray: (@arc-length * @circumference + @squished-width) @circumference;
-          stroke-dashoffset: 0;
-        }
-        100% {
-          stroke-dashoffset: @squished-width - (@arc-length * @circumference);
-        }
-      }
+  @keyframes outer-rotate {
+    100% {
+      transform: rotate(360deg + @rotation-offset);
+    }
+  }
+
+  @keyframes inner-rotate {
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes revolve {
+    50% {
+      stroke-dasharray: (@arc-length * @circumference + @squished-width) @circumference;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: @squished-width - (@arc-length * @circumference);
     }
   }
 }
