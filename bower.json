@@ -1,6 +1,7 @@
 {
   "name": "material-design-preloader",
-  "version": "1.0.3",
+  "version": "1.0.4",
+  "license": "MIT",
   "homepage": "https://github.com/rtheunissen/material-design-preloader",
   "authors": [
     "Rudi Theunissen <rudolf.theunissen@gmail.com>"
@@ -14,5 +15,8 @@
     "preloader",
     "spinner"
   ],
-  "license": "MIT"
+  "ignore": [
+    "*.md",
+    "*.json"
+  ]
 }
