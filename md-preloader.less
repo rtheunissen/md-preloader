@@ -5,71 +5,62 @@
  *
  * License: MIT
  * Author: Rudi Theunissen (rudolf.theunissen@gmail.com)
- * Version: 1.0.5
+ * Version: 1.0.6
  */
 .md-preloader {
+  @easing:      cubic-bezier(.8,.0,.4,.8);
 
-  // overall time taken for all the partitions to meet once
-  @speed: 6600ms;
-
-  // Blue A200 in the Material Design color palette
-  @color: #448AFF;
-
-  // could be 'round', but the official one is square
-  @stroke-linecap: square;
-
-  // this is an attempt to match where the official preloader's partitions meet
-  @rotation-offset: 30deg;
-
-  // the minimum distance that the arc catches up to the front
-  @squished-width: 8;
-
-  // fraction of the circumference that the arc grows to
-  @arc-length: 0.7;
-
-  // number of points where the arc meets
-  @partitions: 5;
-
-  // circumference of the original svg cricle (in the markup)
-  @circumference: 2 * pi() * (75px - 8px) / 2;
+  @speed:       1320ms;             // overall time taken for all the partitions to meet once
+  @color:       #448AFF;            // Blue A200 in the Material Design color palette
+  @linecap:     square;             // could be 'round', but the official one is square
+  @partitions:  5;                  // number of points where the arc meets
+  @arc:         0.72;               // fraction of the circumference that the arc grows to
+  @perimeter:   67px * pi();        // circumference of the raw svg inner cricle
 
   display: inline-block;
-  transform: rotate(@rotation-offset);
-  animation: outer-rotate @speed linear infinite;
+  animation: outer @speed * @partitions linear infinite;
 
   svg {
-    transform: rotate(-(360deg * (1 - @arc-length)) - @squished-width * 2);
-    animation: inner-rotate (@speed / @partitions) linear infinite;
+    animation: inner @speed linear infinite;
 
     circle {
       fill: none;
       stroke: @color;
-      stroke-linecap: @stroke-linecap;
-      stroke-dasharray: @squished-width @circumference;
+      stroke-linecap: @linecap;
+      animation: arc @speed @easing infinite;
+    }
+  }
+
+  @keyframes outer {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes inner {
+    0% {
+      transform: rotate(-360deg * (1 - @arc));
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+
+  @keyframes arc {
+    0% {
+      stroke-dasharray: 1 @perimeter;
       stroke-dashoffset: 0;
-      animation: revolve (@speed / @partitions) cubic-bezier(.8,.0,.4,.8) infinite;
     }
-  }
-
-  @keyframes outer-rotate {
-    100% {
-      transform: rotate(360deg + @rotation-offset);
-    }
-  }
-
-  @keyframes inner-rotate {
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  @keyframes revolve {
-    50% {
-      stroke-dasharray: (@arc-length * @circumference + @squished-width) @circumference;
+    40% {
+      stroke-dasharray: @arc * @perimeter, @perimeter;
       stroke-dashoffset: 0;
     }
     100% {
-      stroke-dashoffset: @squished-width - (@arc-length * @circumference);
+      stroke-dasharray: 1 @perimeter;
+      stroke-dashoffset: -@arc * @perimeter;
     }
   }
 }
