@@ -5,7 +5,7 @@
  *
  * License: MIT
  * Author: Rudi Theunissen (rudolf.theunissen@gmail.com)
- * Version: 1.0.6
+ * Version: 1.1.0
  */
 .md-preloader {
   @easing:      cubic-bezier(.8,.0,.4,.8);
@@ -17,6 +17,7 @@
   @arc:         0.72;               // fraction of the circumference that the arc grows to
   @perimeter:   67px * pi();        // circumference of the raw svg inner cricle
 
+  font-size: 0;
   display: inline-block;
   animation: outer @speed * @partitions linear infinite;
 
