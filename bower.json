@@ -6,7 +6,7 @@
   "authors": [
     "Rudi Theunissen <rudolf.theunissen@gmail.com>"
   ],
-  "description": "A CSS animated SVG implementation of the Google Material Design preloader",
+  "description": "CSS animated SVG implementation of the Google Material Design preloader",
   "main": ["md-preloader.html", "md-preloader.less"],
   "keywords": [
     "svg",
