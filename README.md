@@ -3,8 +3,6 @@ A CSS animated SVG implementation of the Google Material Design preloader
 
 ![Bower](https://img.shields.io/bower/v/material-design-preloader.svg?style=flat-square)
 
-[Demo](http://codepen.io/rudi_theunissen/pen/xbYZjB)
-
 ### Install ###
 ```
 bower install material-design-preloader
