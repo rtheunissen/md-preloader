@@ -1,11 +1,16 @@
 # Google Material Design Preloader
 A CSS animated SVG implementation of the Google Material Design preloader
 
+![Bower](https://img.shields.io/bower/v/material-design-preloader.svg?style=flat-square)
+
+[Demo](http://codepen.io/rudi_theunissen/pen/xbYZjB)
+
+### Install ###
 ```
 bower install material-design-preloader
 ```
 
-[Codepen](http://codepen.io/rudi_theunissen/pen/xbYZjB)
+### Examples ###
 
 ![Demo1](http://i.imgur.com/VDdIDOR.gif)
 ![Demo2](http://i.imgur.com/LDuHZef.gif)

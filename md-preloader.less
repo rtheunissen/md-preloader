@@ -3,23 +3,26 @@
  *
  * CSS animated SVG implementation of the Google Material Design preloader
  *
+ * Reference: http://goo.gl/ZfulRH
  * License: MIT
  * Author: Rudi Theunissen (rudolf.theunissen@gmail.com)
- * Version: 1.1.0
+ * Version: 1.1.1
  */
 .md-preloader {
   @easing:      cubic-bezier(.8,.0,.4,.8);
 
-  @speed:       1320ms;             // overall time taken for all the partitions to meet once
-  @color:       #448AFF;            // Blue A200 in the Material Design color palette
-  @linecap:     square;             // could be 'round', but the official one is square
-  @partitions:  5;                  // number of points where the arc meets
-  @arc:         0.72;               // fraction of the circumference that the arc grows to
-  @perimeter:   67px * pi();        // circumference of the raw svg inner cricle
+  @speed:      1320ms;       // animation time for each loop
+  @color:      #448AFF;      // Blue A200 in the Material Design color palette
+  @linecap:    square;       // could be 'round', but the official one is square
+  @loops:      5;            // number of points where the arc meets
+  @arc:        0.72;         // fraction of the circumference that the arc grows to
+  @perimeter:  67px * pi();  // circumference of the raw svg inner cricle
 
+  // measure to prevent inline block spacing from affecting the outer rotation
   font-size: 0;
+
   display: inline-block;
-  animation: outer @speed * @partitions linear infinite;
+  animation: outer @speed * @loops linear infinite;
 
   svg {
     animation: inner @speed linear infinite;
