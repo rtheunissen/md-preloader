@@ -1,4 +1,4 @@
-# Google Material Design Preloader
+# Material Design Preloader
 A CSS animated SVG implementation of the Google Material Design preloader
 
 ![Bower](https://img.shields.io/bower/v/material-design-preloader.svg?style=flat-square)
