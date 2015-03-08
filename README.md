@@ -16,6 +16,3 @@ bower install material-design-preloader
 ![Demo4](http://i.imgur.com/DSHznsG.gif)
 ![Demo5](http://i.imgur.com/QL4ub85.gif)
 ![Demo6](http://i.imgur.com/cxsT7rS.gif)
-
-#### Credits ####
-[/u/dylanraga](http://www.reddit.com/user/dylanraga): easing, timing
